@@ -26,12 +26,12 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
   }
 
   network_interface {
-    name = "virtio"
+    name   = "virtio"
     bridge = var.network_bridge
   }
 
   cpu {
-    cores = 1 
+    cores = 1
   }
 
   memory {
@@ -46,7 +46,7 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
 
   operating_system {
     template_file_id = "HDPVE:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
-    type = "debian"
+    type             = "debian"
   }
 
   start_on_boot = true
@@ -54,19 +54,19 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
 
 resource "proxmox_virtual_environment_user" "student_account" {
   for_each = var.kelompok_list
-  user_id = "${each.key}@pve"
-  password = "${each.value.password}"
+  user_id  = "${each.key}@pve"
+  password = each.value.password
 }
 
 resource "proxmox_virtual_environment_role" "student_role" {
   role_id = "student-role"
 
   privileges = [
-    "VM.Audit",         # view their VM
-    "VM.Console",       # open console
-    "VM.Monitor",       # monitor status
-    "VM.PowerMgmt",     # start/stop/reboot
-    "VM.Snapshot",      # manage snapshots (optional)
+    "VM.Audit",     # view their VM
+    "VM.Console",   # open console
+    "VM.Monitor",   # monitor status
+    "VM.PowerMgmt", # start/stop/reboot
+    "VM.Snapshot",  # manage snapshots (optional)
   ]
 }
 
@@ -75,9 +75,9 @@ resource "proxmox_virtual_environment_acl" "student_role_account" {
 
   user_id = "${each.key}@pve"
   role_id = "student-role"
-  path = "/vms/${each.value.vm_id}"
+  path    = "/vms/${each.value.vm_id}"
 
-  depends_on = [ 
+  depends_on = [
     proxmox_virtual_environment_user.student_account,
     proxmox_virtual_environment_role.student_role
   ]
