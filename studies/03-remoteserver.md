@@ -176,7 +176,7 @@ layout: two-cols
 # Ragam Protokol & Sistem Operasi
 <style>
   /* reset list spacing */
-  ul.no-gap {
+  ul.no-gap {`
     margin: 0;
     padding: 0;
     font-size: 0;
