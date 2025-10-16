@@ -18,12 +18,14 @@ variable "pve_api_url" {
   }
 }
 
-variable "network_bridge" {
-  default = "vmbr0"
+variable "ubuntu_username" {
+  default   = "Ubuntu username for VM Access"
+  sensitive = true
 }
 
-variable "gateway" {
-  default = "172.16.23.254"
+variable "ubuntu_password" {
+  default   = "Ubuntu password for VM Access"
+  sensitive = true
 }
 
 variable "kelompok_list" {
