@@ -19,13 +19,23 @@ variable "pve_api_url" {
 }
 
 variable "ubuntu_username" {
-  default   = "Ubuntu username for VM Access"
+  description = "Ubuntu username for VM Access"
+  type = string
   sensitive = true
 }
 
 variable "ubuntu_password" {
-  default   = "Ubuntu password for VM Access"
+  description = "Ubuntu password for VM Access"
+  type = string
   sensitive = true
+}
+
+variable "ubuntu_sshkey_pub" {
+  description = "Ubuntu SSH Pub Key"
+  type = list(string)
+  default = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINrvRVRIzXaoNBOxYc8QYUzE955o02pHRH+tbsc15O0A ferrelvsc20@gmail.com"
+  ]
 }
 
 variable "kelompok_list" {
