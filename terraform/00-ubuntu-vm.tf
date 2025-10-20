@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
     }
 
     user_account {
-      keys = var.ubuntu_sshkey_pub
+      keys     = var.ubuntu_sshkey_pub
       username = var.ubuntu_username
       password = var.ubuntu_password
     }
