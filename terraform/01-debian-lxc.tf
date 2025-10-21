@@ -54,6 +54,10 @@ resource "proxmox_virtual_environment_user" "student_account" {
     role_id   = "student-role"
     propagate = true
   }
+
+  depends_on = [ 
+    proxmox_virtual_environment_role.student_role
+   ]
 }
 
 resource "proxmox_virtual_environment_role" "student_role" {
