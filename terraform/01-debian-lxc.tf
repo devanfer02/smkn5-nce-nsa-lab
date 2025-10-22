@@ -18,6 +18,7 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
 
     user_account {
       password = each.value.password
+      keys = var.ubuntu_sshkey_pub
     }
   }
 
