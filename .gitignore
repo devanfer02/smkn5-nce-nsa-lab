@@ -3,3 +3,4 @@
 *.tfstate.*
 *.tfvars
 .terraform.tfstate.lock.info
+.vscode

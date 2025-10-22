@@ -1,0 +1,7 @@
+mysql_username: tkjphp
+mysql_password: pass1234
+mysql_database: tambang_media
+
+github_repo: https://github.com/devanfer02/tambang-media.git
+
+app_dir: /var/www/html

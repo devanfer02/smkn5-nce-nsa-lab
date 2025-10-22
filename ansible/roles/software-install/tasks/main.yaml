@@ -1,0 +1,23 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install base packages
+  apt:
+    name:
+      - git
+      - unzip
+      - curl
+      - php
+      - php-cli
+      - php-xml
+      - php-mbstring
+      - php-json
+      - php-bcmath
+      - php-curl
+      - php-mysql
+      - php-zip
+      - php-tokenizer
+      - composer
+      - mysql-server
+    state: present

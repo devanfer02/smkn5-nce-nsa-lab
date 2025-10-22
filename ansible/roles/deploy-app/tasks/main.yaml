@@ -1,0 +1,49 @@
+- name: Clone Tambang-Media WebApp
+  git:
+    repo: "{{ gihtub_repo }}"
+    clone: yes
+    update: no
+    force: yes
+    dest: "{{ app_dir }}"
+
+- name: Install composer dependancies
+  command:  composer install --no-interaction --prefer-dist
+  args:
+    chdir: "{{ app_dir }}"
+
+- name: Copy .env.example to .env
+  copy:
+    src: "{{ app_dir }}/.env.example"
+    dest: "{{ app_dir }}/.env"
+    remote_src: yes
+
+- name: Set Laravel environment
+  ansible.builtin.lineinfile:
+    path: "{{ app_dir }}/.env"
+    regexp: '^{{ item.key }}='
+    line: "{{ item.key }}={{ item.value }}"
+  loop:
+    - { key: APP_ENV, value: production }
+    - { key: APP_KEY, value: "" }
+    - { key: APP_DEBUG, value: false }
+    - { key: APP_URL, value: "http://{{ ansible_host }}" }
+    - { key: DB_DATABASE, value: "{{ db_name }}" }
+    - { key: DB_USERNAME, value: "{{ db_user }}" }
+    - { key: DB_PASSWORD, value: "{{ db_password }}" }
+
+- name: Generate Laravel app key
+  command: php artisan key:generate
+  args:
+    chdir: "{{ app_dir }}"
+
+- name: Set correct permissions for storage and bootstrap/cache
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: www-data
+    group: www-data
+    mode: '0775'
+  loop:
+    - "{{ app_dir }}/storage"
+    - "{{ app_dir }}/bootstrap/cache"
