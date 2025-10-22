@@ -53,5 +53,6 @@ variable "kelompok_list" {
     kelompok6 = { hostname = "kelompok6", password = "password6", vm_id = 106 }
     kelompok7 = { hostname = "kelompok7", password = "password7", vm_id = 107 }
     kelompok8 = { hostname = "kelompok8", password = "password8", vm_id = 108 }
+    kelompok9 = { hostname = "kelompok9", password = "password9", vm_id = 109 }
   }
 }

@@ -11,7 +11,8 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = format("172.16.23.%d/24", each.value.vm_id)
+        gateway = "172.16.23.254"
       }
     }
 

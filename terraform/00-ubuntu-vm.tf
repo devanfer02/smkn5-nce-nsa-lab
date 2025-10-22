@@ -8,7 +8,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
 
     ip_config {
       ipv4 {
-        address = "172.16.23.101/24"
+        address = "172.16.23.100/24"
         gateway = "172.16.23.254"
       }
     }
