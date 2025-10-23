@@ -27,6 +27,10 @@
       - nodejs
       - npm
     state: present
+  retries: 5
+  delay: 5
+  register: apt_done
+  until: apt_done is succeeded
 
 - name: Install NVM
   shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash

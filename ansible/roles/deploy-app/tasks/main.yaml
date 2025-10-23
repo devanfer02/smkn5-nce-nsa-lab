@@ -1,6 +1,23 @@
 - name: Allow Git to access /var/www/html safely
   command: git config --global --add safe.directory /var/www/html
 
+- name: Check if webapp directory exists
+  stat:
+    path: "{{ webapp_dir }}"
+  register: webapp_dir_stat
+
+- name: Check if composer.lock exists in webapp_dir
+  stat:
+    path: "{{ webapp_dir }}/composer.lock"
+  register: composer_lock_stat
+  when: webapp_dir_stat.stat.exists
+
+- name: Remove existing directory if it is not a Laravel app
+  file:
+    path: "{{ webapp_dir }}"
+    state: absent
+  when: webapp_dir_stat.stat.exists and not composer_lock_stat.stat.exists
+
 - name: Clone Tambang-Media WebApp
   git:
     repo: "{{ github_webapp_repo }}"
