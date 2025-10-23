@@ -31,10 +31,10 @@
 - name: Install NVM
   command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
-- name: Load NVM and install Node.js 4.2.1
+- name: Load NVM and install Node.js 20
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install 4.2.1
+    nvm install 20
   args:
     executable: /bin/bash
