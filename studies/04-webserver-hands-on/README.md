@@ -1,6 +1,14 @@
-`# Prosedur Praktik Web Server Nginx
+# Prosedur Praktik Web Server Nginx
 
-## Melihat Konfigurasi Apache
+## Contents:   
+
+- [Melihat Konfigurasi Apache](#a-melihat-konfigurasi-apache)
+- [Install Nginx Web Server](#b-install-nginx-web-server)
+- [Konfigurasi Web Statis](#c-konfigurasi-web-static)
+- [Konfigurasi Web App](#d-konfigurasi-web-app)
+
+
+## A. Melihat Konfigurasi Apache
 
 Sebelum kita mengganti web server dengan Nginx, mari kita **melihat terlebih dahulu konfigurasi dan status Apache** yang sudah ada di sistem.  
 Langkah ini penting agar kita memahami bagaimana Apache mengatur virtual host-nya dan memastikan layanan berjalan sebelum diganti.
@@ -63,7 +71,7 @@ Dari sini kita tahu:
 
 Buka browser dan akses `http://<Alamat IP>`. Kalian akan melihat tampilan default apache2
 
-## Install Nginx Web Server
+## B. Install Nginx Web Server
 
 Setelah memastikan Apache berjalan dan memahami konfigurasi VirtualHost-nya, kita akan menonaktifkan Apache dan menggantikannya dengan Nginx.
 
@@ -99,7 +107,7 @@ Buka browser dan akses `http://<Alamat IP>`. Kalian akan melihat halaman selamat
 
 Selamat! Kalian telah berhasil melakukan instalasi dan menjalankan Nginx web server.
 
-## Konfigurasi Web Static
+## C. Konfigurasi Web Static
 
 Pada kasus ini, kita akan menghosting sebuah web static dengan membuat file konfigurasi *virtual host* baru di Nginx.
 
@@ -182,7 +190,7 @@ Setelah Nginx di-reload, buka kembali browser dan akses `http://<Alamat IP>`. Ka
 
 Selamat! Kalian telah berhasil melakukan hosting sebuah web statis dengan Nginx.
 
-## Konfigurasi Web App
+## D. Konfigurasi Web App
 
 Pada kasus kedua, kita akan menghosting sebuah web app atau web yang bisa modifikasi data di database dengan membuat file konfigurasi *virtual host* baru di Nginx.
 

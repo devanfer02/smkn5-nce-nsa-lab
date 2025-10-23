@@ -327,3 +327,4 @@ class: text-center
 Ada pertanyaan?
 
 <PoweredBySlidev mt-10 />
+
