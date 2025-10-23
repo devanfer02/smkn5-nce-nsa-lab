@@ -29,7 +29,9 @@
     state: present
 
 - name: Install NVM
-  command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  args:
+    creates: ~/.nvm
 
 - name: Load NVM and install Node.js 20
   shell: |
@@ -38,3 +40,4 @@
     nvm install 20
   args:
     executable: /bin/bash
+    
