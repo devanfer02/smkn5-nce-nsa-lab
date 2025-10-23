@@ -1,3 +1,4 @@
+# NOTE: Doing this because LXC container cant access cgroup which can cause slow user login
 - name: Disable systemd-logind permanently
   ansible.builtin.systemd:
     name: systemd-logind
