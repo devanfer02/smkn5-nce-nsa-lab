@@ -2,6 +2,8 @@ mysql_username: tkjphp
 mysql_password: pass1234
 mysql_database: tambang_media
 
-github_repo: https://github.com/devanfer02/tambang-media.git
+github_webapp_repo: https://github.com/devanfer02/tambang-media.git
+github_webstatic_repo: https://github.com/devanfer02/brun-bites.git
 
-app_dir: /var/www/html
+webapp_dir: /var/www/html
+webstatic_dir: /var/www/brun

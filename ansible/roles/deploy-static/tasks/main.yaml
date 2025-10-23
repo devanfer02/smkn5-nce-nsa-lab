@@ -1,0 +1,7 @@
+- name: Clone Brun Bites 
+  git: 
+    repo: "{{ github_webstatic_repo }}"
+    clone: yes
+    force: yes 
+    update: no
+    dest: "{{ webstatic_dir }}"

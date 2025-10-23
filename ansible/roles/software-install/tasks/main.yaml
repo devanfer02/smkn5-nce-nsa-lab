@@ -19,5 +19,6 @@
       - php-zip
       - php-tokenizer
       - composer
-      - mysql-server
+      - mariadb-server
+      - nginx
     state: present

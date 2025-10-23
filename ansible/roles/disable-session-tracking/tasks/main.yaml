@@ -1,0 +1,18 @@
+- name: Disable systemd-logind permanently
+  ansible.builtin.systemd:
+    name: systemd-logind
+    masked: true
+    enabled: false
+    state: stopped
+
+- name: Disable PAM systemd session registration
+  ansible.builtin.replace:
+    path: /etc/pam.d/common-session
+    regexp: '^session\s+optional\s+pam_systemd\.so'
+    replace: '# session optional pam_systemd.so'
+
+- name: Disable PAM systemd session registration (non-interactive shell)
+  ansible.builtin.replace:
+    path: /etc/pam.d/common-session-noninteractive
+    regexp: '^session\s+optional\s+pam_systemd\.so'
+    replace: '# session optional pam_systemd.so'

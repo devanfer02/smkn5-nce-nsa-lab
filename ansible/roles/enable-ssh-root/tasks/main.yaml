@@ -1,0 +1,13 @@
+- name: Enable root SSH login and password auth
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?{{ item.key }}'
+    line: "{{ item.key }} {{ item.value }}"
+  loop:
+    - { key: "PermitRootLogin", value: "yes" }
+    - { key: "PasswordAuthentication", value: "yes" }
+
+- name: Reload SSH Configuration
+  ansible.builtin.systemd:
+    service: ssh
+    state: reloaded

@@ -1,25 +1,25 @@
 - name: Clone Tambang-Media WebApp
   git:
-    repo: "{{ gihtub_repo }}"
+    repo: "{{ github_webapp_repo }}"
     clone: yes
     update: no
     force: yes
-    dest: "{{ app_dir }}"
+    dest: "{{ webapp_dir }}"
 
 - name: Install composer dependancies
   command:  composer install --no-interaction --prefer-dist
   args:
-    chdir: "{{ app_dir }}"
+    chdir: "{{ webapp_dir }}"
 
 - name: Copy .env.example to .env
   copy:
-    src: "{{ app_dir }}/.env.example"
-    dest: "{{ app_dir }}/.env"
+    src: "{{ webapp_dir }}/.env.example"
+    dest: "{{ webapp_dir }}/.env"
     remote_src: yes
 
 - name: Set Laravel environment
   ansible.builtin.lineinfile:
-    path: "{{ app_dir }}/.env"
+    path: "{{ webapp_dir }}/.env"
     regexp: '^{{ item.key }}='
     line: "{{ item.key }}={{ item.value }}"
   loop:
@@ -34,7 +34,7 @@
 - name: Generate Laravel app key
   command: php artisan key:generate
   args:
-    chdir: "{{ app_dir }}"
+    chdir: "{{ webapp_dir }}"
 
 - name: Set correct permissions for storage and bootstrap/cache
   file:
@@ -45,5 +45,5 @@
     group: www-data
     mode: '0775'
   loop:
-    - "{{ app_dir }}/storage"
-    - "{{ app_dir }}/bootstrap/cache"
+    - "{{ webapp_dir }}/storage"
+    - "{{ webapp_dir }}/bootstrap/cache"
