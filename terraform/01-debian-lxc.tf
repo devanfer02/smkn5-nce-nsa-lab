@@ -9,6 +9,13 @@ resource "proxmox_virtual_environment_container" "group_debian_container" {
   initialization {
     hostname = each.value.hostname
 
+    dns {
+      servers = [
+        "8.8.8.8",
+        "1.1.1.1"
+      ]
+    }
+
     ip_config {
       ipv4 {
         address = format("172.16.23.%d/24", each.value.vm_id)
