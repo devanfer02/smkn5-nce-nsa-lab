@@ -7,3 +7,5 @@ github_webstatic_repo: https://github.com/devanfer02/brun-bites.git
 
 webapp_dir: /var/www/html
 webstatic_dir: /var/www/brun
+
+php_version: 8.2

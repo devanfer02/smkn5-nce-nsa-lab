@@ -247,6 +247,35 @@ systemctl reload nginx
 ### 4. Kunjungi Halaman Web App
 Buka browser dan akses `http://<Alamat IP>`. Kalian akan melihat halaman web app yang telah di-deploy. Aplikasi ini adalah aplikasi web dinamis yang berjalan di atas PHP dan Nginx.
 
+![img](./assets/dynamic.png)
+
+NOTE: gunakan akun berikut untuk mengakses dashboard
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Fullname</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Evan Lingga</td>
+      <td>evanlingga@gmail.com</td>
+      <td>password</td>
+      <td>Admin</td>
+    </tr>
+    <tr>
+      <td>Tade Gina</td>
+      <td>tadegina@gmail.com</td>
+      <td>password</td>
+      <td>Approver</td>
+    </tr>
+  </tbody>
+</table>
+
 Selamat! Kalian telah berhasil mengkonfigurasi Nginx untuk melayani aplikasi web dinamis.
 
 

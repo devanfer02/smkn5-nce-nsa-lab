@@ -8,8 +8,12 @@
       - git
       - unzip
       - curl
+      - composer
+      - mariadb-server
+      - nginx
       - php
       - php-cli
+      - php-fpm
       - php-xml
       - php-mbstring
       - php-json
@@ -17,8 +21,20 @@
       - php-curl
       - php-mysql
       - php-zip
+      - php-gd
+      - php-intl
       - php-tokenizer
-      - composer
-      - mariadb-server
-      - nginx
+      - nodejs
+      - npm
     state: present
+
+- name: Install NVM
+  command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+
+- name: Load NVM and install Node.js 4.2.1
+  shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install 4.2.1
+  args:
+    executable: /bin/bash

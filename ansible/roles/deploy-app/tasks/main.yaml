@@ -1,3 +1,6 @@
+- name: Allow Git to access /var/www/html safely
+  command: git config --global --add safe.directory /var/www/html
+
 - name: Clone Tambang-Media WebApp
   git:
     repo: "{{ github_webapp_repo }}"
@@ -10,6 +13,8 @@
   command:  composer install --no-interaction --prefer-dist
   args:
     chdir: "{{ webapp_dir }}"
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: 1
 
 - name: Copy .env.example to .env
   copy:
@@ -27,9 +32,9 @@
     - { key: APP_KEY, value: "" }
     - { key: APP_DEBUG, value: false }
     - { key: APP_URL, value: "http://{{ ansible_host }}" }
-    - { key: DB_DATABASE, value: "{{ db_name }}" }
-    - { key: DB_USERNAME, value: "{{ db_user }}" }
-    - { key: DB_PASSWORD, value: "{{ db_password }}" }
+    - { key: DB_DATABASE, value: "{{ mysql_database }}" }
+    - { key: DB_USERNAME, value: "{{ mysql_username }}" }
+    - { key: DB_PASSWORD, value: "{{ mysql_password }}" }
 
 - name: Generate Laravel app key
   command: php artisan key:generate
@@ -47,3 +52,22 @@
   loop:
     - "{{ webapp_dir }}/storage"
     - "{{ webapp_dir }}/bootstrap/cache"
+
+- name: Clear and run Laravel migrations
+  shell: |
+    php artisan config:clear
+    php artisan cache:clear
+    php artisan migrate -y --seed
+    php artisan db:seed --class=DummySeeder
+  args:
+    chdir: "{{ webapp_dir }}"
+
+- name: Install frontend dependencies
+  npm:
+    path: /var/www/html
+    production: true
+
+- name: Build Vite assets
+  shell: npm run build
+  args:
+    chdir: /var/www/html

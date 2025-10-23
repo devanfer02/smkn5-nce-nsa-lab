@@ -1,0 +1,18 @@
+- name: Stop Apache2 service
+  ansible.builtin.service:
+    name: apache2
+    state: stopped
+    enabled: no
+
+- name: Remove all files in /var/www/html
+  ansible.builtin.file:
+    path: /var/www/html
+    state: absent
+
+- name: Recreate /var/www/html directory (empty)
+  ansible.builtin.file:
+    path: /var/www/html
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
