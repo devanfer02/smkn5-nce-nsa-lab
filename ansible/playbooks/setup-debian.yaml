@@ -1,6 +1,5 @@
 - hosts: all
   gather_facts: false 
   roles:
-    - name: disable-apache
     - name: enable-ssh-root
     - name: disable-session-tracking
