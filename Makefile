@@ -14,3 +14,6 @@ tf-destroy:
 tf-plan:
 	cd terraform && terraform plan -var-file=proxmox.tfvars
 	
+.PHONY: ans-ping
+ans-ping:
+	cd ansible && ansible kelompok -m ping
