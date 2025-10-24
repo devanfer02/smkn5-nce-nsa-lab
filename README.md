@@ -20,7 +20,10 @@ The [`ansible`](./ansible/) setup automatically:
 - Configured Laravel Webapp and static HTML website in `/var/www` directory
 
 ## 🖥️ Architecture Diagram
-![img](./studies/04-webserver-hands-on/assets/infra.png)
+
+<div align="center">
+<img src="./studies/04-webserver-hands-on/assets/infra.png" style="height: 340px;"/>
+</div>
 
 ## 🗂️ File Contents
 
