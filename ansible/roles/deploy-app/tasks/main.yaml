@@ -72,10 +72,10 @@
 
 - name: Clear and run Laravel migrations
   shell: |
-    php artisan config:clear
-    php artisan cache:clear
+    php artisan config:clear -y
+    php artisan cache:clear -y
     php artisan migrate -y --seed
-    php artisan db:seed --class=DummySeeder
+    php artisan db:seed --class=DummySeeder --force
   args:
     chdir: "{{ webapp_dir }}"
 

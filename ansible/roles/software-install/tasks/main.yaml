@@ -2,15 +2,25 @@
   apt:
     update_cache: yes
 
-- name: Install base packages
-  apt:
+- name: Install Git and utilities
+  apt: 
     name:
       - git
       - unzip
       - curl
-      - composer
+    state: present  
+
+- name: Install Web and MariaDB server
+  apt:
+    name:
       - mariadb-server
       - nginx
+    state: present
+
+- name: Install PHP packages
+  apt:
+    name:
+      - composer
       - php
       - php-cli
       - php-fpm
@@ -24,8 +34,6 @@
       - php-gd
       - php-intl
       - php-tokenizer
-      - nodejs
-      - npm
     state: present
   retries: 5
   delay: 5
@@ -41,7 +49,9 @@
   shell: |
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    nvm install 20
+    if ! nvm ls 20 > /dev/null 2>&1; then
+      nvm install 20
+    fi
   args:
     executable: /bin/bash
     
