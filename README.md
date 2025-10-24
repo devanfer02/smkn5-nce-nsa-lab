@@ -1,9 +1,8 @@
-# SMKN 5 Malang TKJ Lab Environment Provisioning
+# NCE NSA Lab Playground 
 
-![img](./studies/04-webserver-hands-on/assets/infra.png)
+This project utilizes Terraform to automate the provisioning of LXC containers on a Proxmox VE host and Ansible to provisioned Nginx study case material. It's designed to create a standardized environment for students, providing each group with their own container, user account, and a specific set of permissions only to access their own group container.
 
-This project utilizes Terraform to automate the provisioning of LXC containers on a Proxmox VE host and Ansible to provisioned Nginx study case material. It is designed to create a standardized environment for students, providing each group with their own container, user account, and a
-specific set of permissions only to access their own group container.
+It was used for SMKN 5 Malang Network Computer Engineering Major, Network Server Administration course.
 
 ## 📝 Contents
 
@@ -12,14 +11,16 @@ The project uses [bpg/proxmox](https://registry.terraform.io/providers/bpg/proxm
 The [`terraform`](./terraform/) setup automatically creates:
 - An LXC container for each student group.
 - A dedicated user account for each group on Proxmox.
-- A restricted role to ensure students only have access to their own virtual machine.
-- Access Control Lists (ACLs) to tie permissions together.
+- A restricted role to ensure students only have access to their own LXC.
 
 The [`ansible`](./ansible/) setup automatically:
-- Enabling root SSH login
-- Fix issue LXC SSH Delay
+- Enable root SSH login on every LXC container
+- Fix issue Debian LXC login delay (see [this thread](https://forum.proxmox.com/threads/unexplainable-delay-in-lxc-container.105285/post-453202))
 - Install PHP, Nginx and MariaDB for study material
-- Configured Laravel Webapp and static web
+- Configured Laravel Webapp and static HTML website in `/var/www` directory
+
+## 🖥️ Architecture Diagram
+![img](./studies/04-webserver-hands-on/assets/infra.png)
 
 ## 🗂️ File Contents
 
