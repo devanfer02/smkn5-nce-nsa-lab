@@ -16,7 +16,7 @@ while [ $count -ne $TOTAL_HOST ]; do
     echo -e "${YELLOW}Waiting for all $TOTAL_HOST hosts to be reachable...${RESET}"
 
     sleep 2
-    $count=$(ansible kelompok -m ping | grep -c "SUCCESS")
+    count=$(ansible kelompok -m ping | grep -c "SUCCESS")
 done 
 
 echo -e "${GREEN}All $TOTAL_HOST hosts are reachable!${RESET}"
