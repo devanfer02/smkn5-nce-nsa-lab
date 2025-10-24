@@ -22,7 +22,7 @@ The [`ansible`](./ansible/) setup automatically:
 ## 🖥️ Architecture Diagram
 
 <div align="center">
-<img src="./studies/04-webserver-hands-on/assets/infra.png" style="height: 340px;"/>
+<img src="./studies/04-webserver-hands-on/assets/infra.png" style="height: 400px;"/>
 </div>
 
 ## 🗂️ File Contents
