@@ -6,6 +6,13 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   initialization {
     datastore_id = "HDPVE"
 
+    dns {
+      servers = [
+        "8.8.8.8",
+        "1.1.1.1",
+      ]
+    }
+
     ip_config {
       ipv4 {
         address = "172.16.23.100/24"

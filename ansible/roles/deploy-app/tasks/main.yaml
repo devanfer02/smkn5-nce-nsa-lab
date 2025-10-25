@@ -74,17 +74,17 @@
   shell: |
     php artisan config:clear -y
     php artisan cache:clear -y
-    php artisan migrate -y --seed
+    php artisan migrate --seed --force
     php artisan db:seed --class=DummySeeder --force
   args:
     chdir: "{{ webapp_dir }}"
 
 - name: Install frontend dependencies
   npm:
-    path: /var/www/html
-    production: true
+    path: "{{ webapp_dir }}"
+    ci: true
 
 - name: Build Vite assets
   shell: npm run build
   args:
-    chdir: /var/www/html
+    chdir: "{{ webapp_dir }}"
