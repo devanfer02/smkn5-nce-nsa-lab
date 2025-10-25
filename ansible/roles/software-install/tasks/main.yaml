@@ -8,6 +8,7 @@
       - git
       - unzip
       - curl
+      - vim 
     state: present  
 
 - name: Install Web and MariaDB server
