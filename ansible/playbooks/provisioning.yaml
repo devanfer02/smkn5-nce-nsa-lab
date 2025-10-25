@@ -1,0 +1,8 @@
+- name: Run Setup Debian Playbook 
+  ansible.builtin.import_playbook: setup-debian.yaml
+
+- name: Run Setup Web Static Playbook 
+  ansible.builtin.import_playbook: setup-static-web.yaml
+
+- name: Run Setup Web App Playbook
+  ansible.builtin.import_playbook: setup-webapp.yaml
