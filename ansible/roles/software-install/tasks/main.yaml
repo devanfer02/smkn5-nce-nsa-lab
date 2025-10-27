@@ -55,4 +55,17 @@
     fi
   args:
     executable: /bin/bash
+
+- name: Ensure php-fpm /run/php dir exists
+  ansible.builtin.file:
+    path: /run/php 
+    state: directory
+    owner: www-data
+    group: www-data 
+    mode: "0755"
     
+- name: Start php8.2-fpm service
+  ansible.builtin.service:
+    name: php8.2-fpm 
+    state: started
+    enabled: yes
