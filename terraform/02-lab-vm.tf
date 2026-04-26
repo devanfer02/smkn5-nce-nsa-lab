@@ -1,8 +1,8 @@
-resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
-  name      = "ubuntu-vm"
+resource "proxmox_virtual_environment_vm" "lab_vm" {
+  name      = "lab-vm"
   node_name = "pve"
-  vm_id     = 201
-
+  vm_id     = 202
+  
   initialization {
     datastore_id = "HDPVE"
 
@@ -15,7 +15,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
 
     ip_config {
       ipv4 {
-        address = "172.16.23.100/24"
+        address = "172.16.23.110/24"
         gateway = "172.16.23.254"
       }
     }
@@ -33,7 +33,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_vm" {
   }
 
   memory {
-    dedicated = 6144
+    dedicated = 4096
     floating  = 2048
   }
 
